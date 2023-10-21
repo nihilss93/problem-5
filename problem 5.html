@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Guess the Number</title>
+</head>
+<body>
+    <h1>Guess the Number from 1-10</h1>
+
+    <p>Guess a number between 1 and 10:</p>
+    <input type="number" id="guessInput">
+    <button id="guessButton">Guess</button>
+
+    <p id="message"></p>
+
+    <script>
+        // Generate a random number between 1 and 10
+        var randomNumber = Math.floor(Math.random() * 10) + 1;
+
+        var guesses = 0;
+        var maxGuesses = 3;
+
+        // using function in the buttom click event
+        document.getElementById("guessButton").addEventListener("click", function() {
+            var userGuess = parseInt(document.getElementById("guessInput").value);
+            guesses++;
+
+            if (userGuess === randomNumber) {
+                document.getElementById("message").innerHTML = "Congratulations! yor guess is correct";
+            } else if (guesses >= maxGuesses) {
+                document.getElementById("message").innerHTML = "Sorry, you've run out of guesses. The correct number was " + randomNumber + ".";
+                document.getElementById("guessButton").disabled = true;
+            } else if (userGuess < randomNumber) {
+                document.getElementById("message").innerHTML = "too low. Guesses left: " + (maxGuesses - guesses);
+            } else {
+                document.getElementById("message").innerHTML = "too high. Guesses left: " + (maxGuesses - guesses);
+            }
+        });
+    </script>
+</body>
+</html>
+
+
